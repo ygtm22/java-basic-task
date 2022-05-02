@@ -2,6 +2,7 @@
   pageEncoding="UTF-8"%>
 <%
     // セッションからプレイヤー名を取得する
+    String player = (String)session.getAttribute("player");
     
 %>
 <!DOCTYPE html>

@@ -20,5 +20,13 @@ public class Utility {
      * @return
      */
     // todo:ここにgetStoneDisplayHtmlメソッドを定義
+    public static String getStoneDisplayHtml(int x) {
+    	String s = null;
+    	for (int i = 0; i < x; i++) {
+    		s = "●";
+    	}
+    		
+    	return s;
+    }
 
 }
