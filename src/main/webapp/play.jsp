@@ -5,19 +5,22 @@
 	request.setCharacterEncoding("UTF-8");
 	String num = request.getParameter("num");
         
-	/* if (session.getAttribute("player") == null){
-		session.getAttribute("player", "A");
-	} */
+	if (session.getAttribute("player") == null){
+		session.setAttribute("player", "B");
+	}
+	
+	if (session.getAttribute("totalNum") == null){
+		session.setAttribute("totalNum", 25);
+	}
 
     // 残数の更新処理(残数の取得、更新、保存など)  
-    int total = 25;
 	if (num == null || num.isEmpty())
 	{
 		num = "0";
 	}
     int sub = Integer.parseInt(num);
     int totalNum = (int) session.getAttribute("totalNum");// 残数用の変数。仮で25をセットしている。必要に応じて変更
-    totalNum = total- sub;
+    totalNum = totalNum - sub;
     session.setAttribute("totalNum", totalNum);
     String dif = Utility.getStoneDisplayHtml(totalNum);
     
@@ -25,14 +28,11 @@
     String player = (String)session.getAttribute("player");// プレイヤー用の変数。仮で"A"をセットしている。必要に応じて変更
     String turnPlayer = null;
     
-    player = "A";
-    player = "B";
-    
     switch (player){
-    case "A":
+    case "B":
     	turnPlayer = "A";
     	break;
-    case"B":
+    case "A":
     	turnPlayer = "B";
     	break;
     }
@@ -63,7 +63,7 @@
       <%
           // todo:このprint分は仮の処理。実装が完了したら削除する。
           // 表示する文字列("●●～")をメソッドを使い取得し、取得した文字列を表示する
-          out.println("●●●●●●●●●●<br>●●●●●●●●●●<br>●●●●●");
+          out.println(dif);
       %>
     </p>
   </div>
